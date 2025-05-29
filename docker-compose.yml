@@ -1,0 +1,50 @@
+version: '3.8'
+
+services:
+  # MongoDB for each service
+  user-db:
+    image: mongo:7.0
+    container_name: user-db
+    environment:
+      MONGO_INITDB_DATABASE: userdb
+    ports:
+      - "27017:27017"
+    volumes:
+      - user_data:/data/db
+
+  product-db:
+    image: mongo:7.0
+    container_name: product-db
+    environment:
+      MONGO_INITDB_DATABASE: productdb
+    ports:
+      - "27018:27017"
+    volumes:
+      - product_data:/data/db
+
+  order-db:
+    image: mongo:7.0
+    container_name: order-db
+    environment:
+      MONGO_INITDB_DATABASE: orderdb
+    ports:
+      - "27019:27017"
+    volumes:
+      - order_data:/data/db
+
+  # RabbitMQ Message Queue
+  rabbitmq:
+    image: rabbitmq:3.12-management
+    container_name: rabbitmq
+    environment:
+      RABBITMQ_DEFAULT_USER: admin
+      RABBITMQ_DEFAULT_PASS: admin123
+    ports:
+      - "5672:5672"
+      - "15672:15672"  # Management UI
+    volumes:
+      - rabbitmq_data:/var/lib/rabbitmq
+
+  # Redis for caching
+  redis:
+    image: redis:7-alpine
