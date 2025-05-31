@@ -1,11 +1,7 @@
-import "dotenv/config"
-import express from "express";
-
-const app = express()
-const PORT = process.env.PORT || 3001
-const NODE_ENV = process.env.NODE_ENV ||"development"
-const server = app.listen(PORT, () => {
-    console.log(`Auth-service running on port ${PORT} in mode ${NODE_ENV}`)
+import app from "./app"
+import { config } from "./config/app.config"
+const server = app.listen(config.PORT, () => {
+    console.log(`Auth-service running on port ${config.PORT} in ${config.NODE_ENV} mode`)
 })
 
 server.on('error', (error:any) => {
