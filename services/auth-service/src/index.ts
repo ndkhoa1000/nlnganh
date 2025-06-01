@@ -1,5 +1,5 @@
 import app from "./app"
-import { config } from "./config/app.config"
+import config  from "./config/app.config"
 const server = app.listen(config.PORT, () => {
     console.log(`Auth-service running on port ${config.PORT} in ${config.NODE_ENV} mode`)
 })
