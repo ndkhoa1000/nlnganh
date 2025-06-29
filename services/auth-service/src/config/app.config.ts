@@ -2,7 +2,7 @@ import { getEnv } from "../utils/get-env";
 // WARN: env might not read, so when deployment, need debug for ensure env can be read smoothly.
 const appConfig = () => ({
     NODE_ENV: getEnv("NODE_ENV", "development"),
-    PORT:getEnv("PORT","3000"),
+    PORT:getEnv("PORT","5000"),
     BASE_PATH:getEnv("BASE_PATH", "/api"),
     MONGO_URI: getEnv("MONGO_URI", "mongodb://localhost:27017/express-mongo"),
 
@@ -17,6 +17,4 @@ const appConfig = () => ({
     FRONTEND_GOOGLE_CALLBACK_URL: getEnv("FRONTEND_GOOGLE_CALLBACK_URL","http://localhost:5173/google/oauth/callback"),
 })
 
-const config = appConfig();
-
-export default config;
+export const config = appConfig();
